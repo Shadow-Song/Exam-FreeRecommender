@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import json
 
 
 # 将*.xls格式转化为*.csv格式
@@ -62,11 +63,25 @@ def get_scores(data_frame: pd) -> list:
     # print(score, file=data)
 
 
-'''
-convert('2019.xls')
-log = open('result.txt', 'w+')
+def default_dump(obj):
+    """Convert numpy classes to JSON serializable objects."""
+    if isinstance(obj, (np.integer, np.floating, np.bool_)):
+        return obj.item()
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()
+    else:
+        return obj
+
+
+convert('list.xls')
+log = open('./static/log/result.txt', 'w+')
 file = open('./static/data/data.csv')
 data = pd.read_csv(file)
 result = get_scores(data_frame=data)
+
+json_file_path = './static/data/data.json'
+json_file = open(json_file_path, 'w+')
+# str_json = json.dumps(result, ensure_ascii=False, indent=2)
+
+json.dump(result, json_file, indent=4, ensure_ascii=False, default=default_dump)
 print(result, file=log)
-'''

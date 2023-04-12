@@ -2,31 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
+    <title>上传</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/bootstrap5.css') }}">
-    {% block head %}{% endblock %}
 </head>
 <body>
-<ul class="nav">
-    <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{{ url_for("upload") }}">首页</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url_for("plan") }}">培养方案</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url_for("condition") }}">条件</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url_for("name_list") }}">学生名单</a>
-    </li>
-</ul>
 <div class="m-4">
     <div class="container">
         <div class="row">
             <div class="col"></div>
             <div class="col-8">
-                {% block body %}{% endblock %}
+                <h1>上传文件</h1>
+                <form action="" method=post enctype=multipart/form-data>
+                    <div class="mb-3">
+                        <label for="list" class="form-label">成绩单</label>
+                        <input class="form-control" type="file" name=list>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary mb-3">直接生成</button>
+                    </div>
+                </form>
             </div>
             <div class="col"></div>
         </div>
